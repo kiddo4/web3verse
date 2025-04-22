@@ -134,3 +134,10 @@ h2 {
         display: none;
     }
 }
+
+
+/* You can remove all custom styles if using Tailwind.
+   Optionally, keep a minimal reset: */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

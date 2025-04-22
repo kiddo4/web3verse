@@ -1,56 +1,488 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3Verse - Own the Future with Web3</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Chain - Quantum-Resistant Blockchain</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;600;700&display=swap');
+
+    :root {
+      --neon-cyan: #00f0ff;
+      --neon-pink: #ff00a0;
+      --dark-bg: #050714;
+      --cyber-grid: #0a1a2a;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.15) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 160, 0.15) 0%, transparent 30%),
+        linear-gradient(rgba(5, 7, 20, 0.9), rgba(5, 7, 20, 0.9)),
+        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M0 0h1v1H0z' fill='%23102030' fill-opacity='0.1'/%3E%3C/svg%3E");
+      font-family: 'Inter', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .neon-text-cyan {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 5px rgba(0, 240, 255, 0.5), 0 0 10px rgba(0, 240, 255, 0.3);
+    }
+
+    .neon-text-pink {
+      color: var(--neon-pink);
+      text-shadow: 0 0 5px rgba(255, 0, 160, 0.5), 0 0 10px rgba(255, 0, 160, 0.3);
+    }
+
+    .neon-border {
+      position: relative;
+    }
+
+    .neon-border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 1px solid transparent;
+      border-radius: inherit;
+      background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .cyber-grid {
+      background-color: var(--cyber-grid);
+      background-image: linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .glitch-hover:hover {
+      animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    }
+
+    @keyframes glitch {
+      0% {
+        transform: translate(0);
+      }
+      20% {
+        transform: translate(-2px, 2px);
+      }
+      40% {
+        transform: translate(-2px, -2px);
+      }
+      60% {
+        transform: translate(2px, 2px);
+      }
+      80% {
+        transform: translate(2px, -2px);
+      }
+      100% {
+        transform: translate(0);
+      }
+    }
+
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+    }
+  </style>
 </head>
-<body>
-    <nav>
-        <div class="logo">Web3Verse</div>
-        <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#about">About</a>
-            <a href="#join">Join</a>
+
+<body class="min-h-screen">
+  <!-- Animated background particles -->
+  <div class="fixed inset-0 pointer-events-none">
+    <div id="particles-js"></div>
+  </div>
+
+  <!-- Main content -->
+  <div class="relative z-10">
+    <!-- Header -->
+    <header class="px-6 py-6 md:px-12 md:py-8">
+      <nav class="flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-pink-500 flex items-center justify-center mr-3">
+            <span class="orbitron font-bold text-lg">Q</span>
+          </div>
+          <span class="orbitron font-bold text-xl neon-text-cyan">QUANTUM<span class="neon-text-pink">CHAIN</span></span>
         </div>
-    </nav>
+        <div class="hidden md:flex space-x-8 orbitron text-sm">
+          <a href="#technology" class="hover:text-cyan-400 transition-colors">TECHNOLOGY</a>
+          <a href="#features" class="hover:text-cyan-400 transition-colors">FEATURES</a>
+          <a href="#ecosystem" class="hover:text-cyan-400 transition-colors">ECOSYSTEM</a>
+          <a href="#developers" class="hover:text-cyan-400 transition-colors">DEVELOPERS</a>
+        </div>
+        <div>
+          <button class="orbitron bg-transparent border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-5 py-2 rounded-md text-sm transition-all">
+            CONNECT
+          </button>
+        </div>
+      </nav>
+    </header>
 
-    <main>
-        <section class="hero">
-            <h1>Own the Future <br>with <span class="highlight">Web3</span></h1>
-            <p class="subtitle">Empowering creators, users, and communities<br>with decentralized technologies.</p>
-            <button class="primary-button">Get Started</button>
-        </section>
-
-        <section class="why-web3">
-            <h2>Why Web3?</h2>
-            <p>Web3 is not just a trend—it's a paradigm shift. It represents a decentralized internet where users own their data, creators earn directly from their communities, and trust is built on code, not corporations.</p>
-        </section>
-
-        <section class="features">
-            <h2>Features</h2>
-            <div class="feature-cards">
-                <div class="feature-card">
-                    <h3>Decentralized Identity</h3>
-                    <p>Own your identity, everywhere online.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Tokenized Access</h3>
-                    <p>Access content and services with tokens.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Community Governance</h3>
-                    <p>Shape the future with DAO-powered votes.</p>
-                </div>
+    <!-- Hero Section -->
+    <section class="px-6 py-16 md:py-24 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="orbitron text-4xl md:text-6xl font-bold leading-tight mb-6">
+            <span class="neon-text-cyan">QUANTUM</span>-RESISTANT<br>
+            BLOCKCHAIN FOR THE<br>
+            <span class="neon-text-pink">POST-QUANTUM ERA</span>
+          </h1>
+          <p class="text-gray-300 mb-8 max-w-lg">
+            Secure against quantum computing attacks, lightning-fast transactions, and zero-knowledge privacy. 
+            The future-proof blockchain infrastructure for the next generation of decentralized applications.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button class="orbitron bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-600 hover:to-pink-600 text-white px-8 py-3 rounded-md font-medium transition-all glitch-hover">
+              EXPLORE QUANTUM CHAIN
+            </button>
+            <button class="orbitron bg-transparent border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 px-8 py-3 rounded-md font-medium transition-all">
+              WHITEPAPER <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="w-full h-80 md:h-96 cyber-grid rounded-lg neon-border overflow-hidden relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-32 h-32 rounded-full bg-gradient-to-r from-cyan-500 to-pink-500 blur-xl opacity-70 animate-pulse"></div>
             </div>
-        </section>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-48 h-48 border-4 border-cyan-400/30 rounded-full animate-spin" style="animation-duration: 10s;"></div>
+              <div class="w-32 h-32 border-4 border-pink-500/30 rounded-full animate-spin" style="animation-duration: 5s;"></div>
+            </div>
+          </div>
+          <div class="absolute -bottom-5 -right-5 bg-gradient-to-br from-cyan-900/20 to-pink-900/20 backdrop-blur-sm rounded-lg p-4 neon-border">
+            <div class="flex items-center space-x-4">
+              <div class="text-2xl neon-text-cyan"><i class="fas fa-bolt"></i></div>
+              <div>
+                <div class="text-xs text-gray-400">CURRENT TPS</div>
+                <div class="orbitron text-xl neon-text-cyan">65,432</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section class="join">
-            <h2>Join the Web3 Revolution</h2>
-            <p>Be part of the community that's reshaping the web.</p>
-            <button class="primary-button">Join Now</button>
-        </section>
-    </main>
+    <!-- Stats Section -->
+    <section class="px-6 py-12 max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 neon-border">
+          <div class="text-gray-400 text-sm mb-1">Total Transactions</div>
+          <div class="orbitron text-2xl neon-text-cyan">1.2B+</div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 neon-border">
+          <div class="text-gray-400 text-sm mb-1">Avg. Transaction Fee</div>
+          <div class="orbitron text-2xl neon-text-pink">$0.0001</div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 neon-border">
+          <div class="text-gray-400 text-sm mb-1">Validator Nodes</div>
+          <div class="orbitron text-2xl neon-text-cyan">5,400+</div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 neon-border">
+          <div class="text-gray-400 text-sm mb-1">Developer Growth</div>
+          <div class="orbitron text-2xl neon-text-pink">+240%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="px-6 py-16 max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+          <span class="neon-text-cyan">QUANTUM</span>-RESISTANT <span class="neon-text-pink">TECHNOLOGY</span>
+        </h2>
+        <p class="text-gray-300 max-w-2xl mx-auto">
+          Our lattice-based cryptography provides security against quantum computing attacks while maintaining 
+          lightning-fast transaction speeds and minimal resource requirements.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-8 neon-border card-hover">
+          <div class="text-cyan-400 text-3xl mb-4"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="orbitron text-xl font-bold mb-3">Post-Quantum Security</h3>
+          <p class="text-gray-300">Resistant to attacks from quantum computers using advanced lattice-based cryptography.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-8 neon-border card-hover">
+          <div class="text-pink-500 text-3xl mb-4"><i class="fas fa-tachometer-alt"></i></div>
+          <h3 class="orbitron text-xl font-bold mb-3">100,000+ TPS</h3>
+          <p class="text-gray-300">Our sharded architecture enables over 100,000 transactions per second with sub-second finality.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-8 neon-border card-hover">
+          <div class="text-cyan-400 text-3xl mb-4"><i class="fas fa-lock"></i></div>
+          <h3 class="orbitron text-xl font-bold mb-3">Zero-Knowledge Privacy</h3>
+          <p class="text-gray-300">Optional privacy features using zero-knowledge proofs for confidential transactions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section id="ecosystem" class="px-6 py-16 max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+          <span class="neon-text-pink">QUANTUM</span> ECOSYSTEM
+        </h2>
+        <p class="text-gray-300 max-w-2xl mx-auto">
+          A thriving ecosystem of decentralized applications, tools, and services built on Quantum Chain.
+        </p>
+      </div>
+
+      <div class="cyber-grid rounded-lg p-8 neon-border">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 card-hover">
+            <h3 class="orbitron text-lg font-bold mb-2">Quantum DeFi</h3>
+            <p class="text-gray-300 text-sm">Next-gen financial protocols with quantum-resistant security.</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 card-hover">
+            <h3 class="orbitron text-lg font-bold mb-2">Quantum NFTs</h3>
+            <p class="text-gray-300 text-sm">Digital collectibles with enhanced privacy and ownership features.</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 card-hover">
+            <h3 class="orbitron text-lg font-bold mb-2">Quantum Gaming</h3>
+            <p class="text-gray-300 text-sm">High-performance gaming infrastructure with instant transactions.</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 card-hover">
+            <h3 class="orbitron text-lg font-bold mb-2">Quantum Identity</h3>
+            <p class="text-gray-300 text-sm">Self-sovereign identity solutions with quantum-resistant security.</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 card-hover">
+            <h3 class="orbitron text-lg font-bold mb-2">Quantum DAO</h3>
+            <p class="text-gray-300 text-sm">Decentralized governance with enhanced voting mechanisms.</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 card-hover">
+            <h3 class="orbitron text-lg font-bold mb-2">Quantum Bridge</h3>
+            <p class="text-gray-300 text-sm">Cross-chain interoperability with secure bridging protocols.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Developers Section -->
+    <section id="developers" class="px-6 py-16 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
+            <span class="neon-text-cyan">BUILD</span> THE <span class="neon-text-pink">FUTURE</span>
+          </h2>
+          <p class="text-gray-300 mb-6">
+            Join thousands of developers building the next generation of decentralized applications on Quantum Chain.
+            Our developer-friendly tools and comprehensive documentation make it easy to get started.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="text-cyan-400"><i class="fas fa-check-circle"></i></div>
+              <div>Multiple programming language support</div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-cyan-400"><i class="fas fa-check-circle"></i></div>
+              <div>Comprehensive SDK and developer tools</div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-cyan-400"><i class="fas fa-check-circle"></i></div>
+              <div>$100M developer grants program</div>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="text-cyan-400"><i class="fas fa-check-circle"></i></div>
+              <div>24/7 developer support and community</div>
+            </div>
+          </div>
+          <div class="mt-8">
+            <button class="orbitron bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-600 hover:to-pink-600 text-white px-8 py-3 rounded-md font-medium transition-all glitch-hover">
+              START BUILDING <i class="fas fa-code ml-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 neon-border">
+          <div class="orbitron text-sm text-gray-400 mb-2">// Quantum Chain Smart Contract Example</div>
+          <pre class="bg-gray-900 rounded-lg p-4 text-sm overflow-x-auto">
+<span class="text-pink-400">import</span> <span class="text-cyan-400">{ QuantumContract }</span> <span class="text-pink-400">from</span> <span class="text-green-400">"@quantum/sdk"</span>;
+
+<span class="text-pink-400">export</span> <span class="text-pink-400">class</span> <span class="text-cyan-400">TokenContract</span> <span class="text-pink-400">extends</span> <span class="text-cyan-400">QuantumContract</span> {
+  
+  <span class="text-pink-400">@state</span> <span class="text-cyan-400">balances</span>: <span class="text-cyan-400">Map</span>&lt;<span class="text-cyan-400">Address</span>, <span class="text-cyan-400">u64</span>&gt;;
+  
+  <span class="text-pink-400">@quantum</span>
+  <span class="text-yellow-400">transfer</span>(<span class="text-cyan-400">to</span>: <span class="text-cyan-400">Address</span>, <span class="text-cyan-400">amount</span>: <span class="text-cyan-400">u64</span>) {
+    <span class="text-pink-400">const</span> <span class="text-cyan-400">sender</span> = <span class="text-cyan-400">this</span>.<span class="text-yellow-400">getSender</span>();
+    <span class="text-pink-400">const</span> <span class="text-cyan-400">senderBalance</span> = <span class="text-cyan-400">this</span>.<span class="text-cyan-400">balances</span>.<span class="text-yellow-400">get</span>(<span class="text-cyan-400">sender</span>);
+    
+    <span class="text-pink-400">assert</span>(<span class="text-cyan-400">senderBalance</span> >= <span class="text-cyan-400">amount</span>, <span class="text-green-400">"Insufficient balance"</span>);
+    
+    <span class="text-cyan-400">this</span>.<span class="text-cyan-400">balances</span>.<span class="text-yellow-400">set</span>(<span class="text-cyan-400">sender</span>, <span class="text-cyan-400">senderBalance</span> - <span class="text-cyan-400">amount</span>);
+    <span class="text-cyan-400">this</span>.<span class="text-cyan-400">balances</span>.<span class="text-yellow-400">set</span>(<span class="text-cyan-400">to</span>, <span class="text-cyan-400">this</span>.<span class="text-cyan-400">balances</span>.<span class="text-yellow-400">get</span>(<span class="text-cyan-400">to</span>) + <span class="text-cyan-400">amount</span>);
+    
+    <span class="text-cyan-400">this</span>.<span class="text-yellow-400">emit</span>(<span class="text-green-400">"Transfer"</span>, { <span class="text-cyan-400">from</span>: <span class="text-cyan-400">sender</span>, <span class="text-cyan-400">to</span>, <span class="text-cyan-400">amount</span> });
+  }
+}
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="px-6 py-16 max-w-7xl mx-auto">
+      <div class="cyber-grid rounded-lg p-12 neon-border text-center">
+        <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
+          <span class="neon-text-cyan">JOIN</span> THE <span class="neon-text-pink">QUANTUM</span> REVOLUTION
+        </h2>
+        <p class="text-gray-300 max-w-2xl mx-auto mb-8">
+          Be part of the next evolution in blockchain technology. Quantum Chain is building the secure, 
+          high-performance infrastructure for the post-quantum era.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <button class="orbitron bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-600 hover:to-pink-600 text-white px-8 py-3 rounded-md font-medium transition-all glitch-hover">
+            JOIN COMMUNITY
+          </button>
+          <button class="orbitron bg-transparent border border-white/20 hover:border-cyan-400 text-white hover:text-cyan-400 px-8 py-3 rounded-md font-medium transition-all">
+            READ DOCS
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-6 py-12 border-t border-white/10">
+      <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-pink-500 flex items-center justify-center mr-2">
+              <span class="orbitron font-bold text-sm">Q</span>
+            </div>
+            <span class="orbitron font-bold text-lg neon-text-cyan">QUANTUM<span class="neon-text-pink">CHAIN</span></span>
+          </div>
+          <p class="text-gray-400 text-sm">
+            The quantum-resistant blockchain for the post-quantum era.
+          </p>
+        </div>
+        <div>
+          <h3 class="orbitron text-sm font-bold mb-4">RESOURCES</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Documentation</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Whitepaper</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">GitHub</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Roadmap</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="orbitron text-sm font-bold mb-4">COMMUNITY</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Discord</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Twitter</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Telegram</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Forum</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="orbitron text-sm font-bold mb-4">LEGAL</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-cyan-400 transition-colors">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/10 text-center text-sm text-gray-500">
+        © 2023 Quantum Chain. All rights reserved.
+      </div>
+    </footer>
+  </div>
+
+  <!-- Particles.js for background effect -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-js', {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": ["#00f0ff", "#ff00a0"]
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            }
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": true
+          },
+          "size": {
+            "value": 3,
+            "random": true
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#00f0ff",
+            "opacity": 0.2,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 1,
+            "direction": "none",
+            "random": true,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "grab"
+            },
+            "onclick": {
+              "enable": true,
+              "mode": "push"
+            },
+            "resize": true
+          },
+          "modes": {
+            "grab": {
+              "distance": 140,
+              "line_linked": {
+                "opacity": 0.8
+              }
+            },
+            "push": {
+              "particles_nb": 4
+            }
+          }
+        },
+        "retina_detect": true
+      });
+    });
+  </script>
 </body>
+
 </html>
